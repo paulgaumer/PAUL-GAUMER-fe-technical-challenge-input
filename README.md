@@ -18,6 +18,7 @@ We want you to write a controlled form component called `MoneyInput` in React wi
 
 - Suppose that the component gets a `locale` passed as a prop (e.g. `en` or `de`), that you can use to format the string.
 - You may use the tokens provided in `tokens.css` to style the component.
+- The code should be placed in the `src/MoneyInput` directory, there is some boilerplate code there created for your convenience.
 
 ## Submit your solution
 
