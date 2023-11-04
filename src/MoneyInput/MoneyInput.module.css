@@ -1,0 +1,33 @@
+@import url(../tokens.css);
+
+.inputBase {
+  width: 100%;
+  padding: var(--betterplace-dimension-0) var(--betterplace-dimension--1);
+  font: var(--betterplace-typography-base);
+  color: var(--betterplace-color-gray-900);
+  border: 1px solid var(--betterplace-color-gray-500);
+  border-radius: var(--betterplace-dimension--3);
+
+  &:hover {
+    box-shadow: var(--betterplace-shadow-outer-neutral-soft-2);
+  }
+
+  &:focus {
+    outline: var(--betterplace-dimension--4) solid var(--betterplace-color-green-800);
+    outline-offset: var(--betterplace-dimension--4);
+  }
+}
+
+.arrowsDisabled {
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
