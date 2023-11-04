@@ -29,4 +29,11 @@ describe('<MoneyInput>', () => {
 
     expect(input).toHaveAttribute('disabled')
   })
+
+  it('makes its error state accessible', () => {
+    render(<MoneyInput error="Error message" />)
+    const input = screen.getByRole('spinbutton')
+
+    expect(input).toHaveAttribute('aria-invalid', 'true')
+  })
 })

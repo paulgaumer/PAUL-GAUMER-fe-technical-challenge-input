@@ -12,11 +12,27 @@ export default {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {},
+  argTypes: {
+    value: { control: { type: 'number' }, description: 'Set a default value in cents' },
+    error: { control: { type: 'text' }, description: 'Set an error message for the field' },
+    disabled: { control: { type: 'boolean' }, description: 'Disable the field' },
+  },
 } satisfies Meta<typeof MoneyInput>
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Default = {}
+export const Default = {
+  args: {
+    value: '',
+    error: '',
+    disabled: false,
+  },
+}
+
+export const WithError = {
+  args: {
+    error: 'Error message',
+  },
+}
 
 export const Disabled = {
   args: {
