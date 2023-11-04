@@ -31,3 +31,8 @@
     -moz-appearance: textfield;
   }
 }
+
+.inputDisabled {
+  color: var(--betterplace-color-gray-300);
+  border-color: var(--betterplace-color-gray-300);
+}

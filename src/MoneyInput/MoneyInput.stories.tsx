@@ -17,3 +17,10 @@ export default {
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default = {}
+
+export const Disabled = {
+  args: {
+    disabled: true,
+    placeholder: '0',
+  },
+}

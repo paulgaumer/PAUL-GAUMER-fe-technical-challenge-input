@@ -26,6 +26,7 @@ export default function MoneyInput(props: MoneyInputProps) {
       className={`
         ${_styles.inputBase}
         ${_styles.arrowsDisabled}
+        ${disabled && _styles.inputDisabled}
       `}
     />
   )

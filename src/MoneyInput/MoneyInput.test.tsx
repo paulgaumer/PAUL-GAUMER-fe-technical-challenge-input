@@ -22,4 +22,11 @@ describe('<MoneyInput>', () => {
       expect(input).toHaveValue(25)
     })
   })
+
+  it('can be disabled', () => {
+    render(<MoneyInput disabled />)
+    const input = screen.getByRole('spinbutton')
+
+    expect(input).toHaveAttribute('disabled')
+  })
 })
