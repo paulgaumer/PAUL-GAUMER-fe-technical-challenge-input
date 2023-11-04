@@ -13,6 +13,7 @@ export default {
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
+    label: { control: { type: 'text' }, description: 'Set a label for the field' },
     value: { control: { type: 'number' }, description: 'Set a default value in cents' },
     error: { control: { type: 'text' }, description: 'Set an error message for the field' },
     disabled: { control: { type: 'boolean' }, description: 'Disable the field' },
@@ -22,6 +23,7 @@ export default {
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default = {
   args: {
+    label: 'Total in Euro',
     value: '',
     error: '',
     disabled: false,

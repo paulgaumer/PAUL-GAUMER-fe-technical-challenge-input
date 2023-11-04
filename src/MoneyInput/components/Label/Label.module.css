@@ -1,0 +1,7 @@
+@import url(../../../tokens.css);
+
+.label {
+  font: var(--betterplace-typography-sm-bold);
+  color: var(--betterplace-color-gray-900);
+  display: block;
+}

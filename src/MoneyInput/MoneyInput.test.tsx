@@ -43,6 +43,11 @@ describe('<MoneyInput>', () => {
     })
   })
 
+  it('displays a label', () => {
+    render(<MoneyInput label="Sum in Euro" />)
+    expect(screen.getByRole('spinbutton', { name: 'Sum in Euro' })).toBeInTheDocument()
+  })
+
   it('can be disabled', () => {
     render(<MoneyInput disabled />)
     const input = screen.getByRole('spinbutton')
