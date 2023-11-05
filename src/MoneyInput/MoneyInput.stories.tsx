@@ -16,6 +16,7 @@ export default {
     label: { control: { type: 'text' }, description: 'Set a label for the field' },
     value: { control: { type: 'number' }, description: 'Set a default value in cents' },
     error: { control: { type: 'text' }, description: 'Set an error message for the field' },
+    locale: { control: { type: 'text' }, description: 'Set a locale to format the field' },
     disabled: { control: { type: 'boolean' }, description: 'Disable the field' },
   },
 } satisfies Meta<typeof MoneyInput>
@@ -26,7 +27,15 @@ export const Default = {
     label: 'Total in Euro',
     value: 1250,
     error: '',
+    locale: 'en-US',
     disabled: false,
+  },
+}
+
+export const WithLocale = {
+  args: {
+    locale: 'de-DE',
+    value: 125456,
   },
 }
 

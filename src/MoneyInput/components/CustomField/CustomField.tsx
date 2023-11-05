@@ -1,24 +1,32 @@
 import { useEffect, useState } from 'react'
 import _styles from './CustomField.module.css'
-import { formatToDecimalCurrency, removeCurrencySymbol, logInCents, recordAsCurrency } from '../../utils'
-import { MoneyInputProps } from '../../types'
+import {
+  formatToDecimalCurrency,
+  removeCurrencySymbol,
+  logInCents,
+  recordAsCurrency,
+  validateLocale,
+} from '../../utils/numbers'
+import { CustomFieldProps } from '../../types'
 
-export default function MoneyInput(props: MoneyInputProps) {
+export default function CustomField(props: CustomFieldProps) {
   const { value, id, required, disabled, placeholder } = props
-  const { label, error, ...inputProps } = props // filter attributes passed to the input element
+  const { label, error, locale, ...inputProps } = props // filter attributes passed to the input element
 
-  const initialValue = formatToDecimalCurrency(value)
+  const safeLocale = validateLocale(locale)
+
+  const initialValue = formatToDecimalCurrency(value, safeLocale)
   const [currentValue, setCurrentValue] = useState(initialValue)
 
   const recordAndLog = (e: React.ChangeEvent<HTMLInputElement>) => {
     const amount = removeCurrencySymbol(e.target.value)
-    logInCents(amount)
-    setCurrentValue(recordAsCurrency(amount, currentValue))
+    logInCents(amount, safeLocale)
+    setCurrentValue(recordAsCurrency(amount, safeLocale))
   }
 
   useEffect(() => {
-    if (value) setCurrentValue(formatToDecimalCurrency(value))
-  }, [value])
+    if (value) setCurrentValue(formatToDecimalCurrency(value, safeLocale))
+  }, [value, safeLocale])
 
   return (
     <input

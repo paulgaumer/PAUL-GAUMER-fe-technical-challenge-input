@@ -14,10 +14,17 @@ describe('<MoneyInput>', () => {
   })
 
   it('converts a default value from cents to decimal', async () => {
-    render(<MoneyInput value={100} />)
+    render(<MoneyInput value={1250056} />)
     const input = screen.getByRole('textbox')
 
-    expect(input).toHaveValue('€1')
+    expect(input).toHaveValue('€12,500.56')
+  })
+
+  it('converts to custom locale', () => {
+    render(<MoneyInput locale="de-DE" value={1250056} />)
+    const input = screen.getByRole('textbox')
+
+    expect(input).toHaveValue('€12.500,56')
   })
 
   it('accepts user input in decimal and logs it in cents', async () => {

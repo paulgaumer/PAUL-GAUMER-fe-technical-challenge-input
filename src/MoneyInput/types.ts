@@ -2,4 +2,7 @@ export interface MoneyInputProps extends React.InputHTMLAttributes<HTMLInputElem
   label?: string
   value?: number
   error?: string
+  locale?: string
 }
+
+export interface CustomFieldProps extends MoneyInputProps {}
