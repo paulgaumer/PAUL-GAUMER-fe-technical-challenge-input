@@ -1,41 +1,41 @@
 import { useEffect, useState } from 'react'
 import _styles from './CustomField.module.css'
-import { formatToDecimal, toCents } from '../../utils'
+import { formatToDecimalCurrency, removeCurrencySymbol, logInCents, recordAsCurrency } from '../../utils'
 import { MoneyInputProps } from '../../types'
 
 export default function MoneyInput(props: MoneyInputProps) {
-  const { label, error, ...inputProps } = props
+  const { value, id, required, disabled, placeholder } = props
+  const { label, error, ...inputProps } = props // filter attributes passed to the input element
 
-  const initialValue = formatToDecimal(props.value)
-  const [inputValue, setInputValue] = useState(initialValue)
+  const initialValue = formatToDecimalCurrency(value)
+  const [currentValue, setCurrentValue] = useState(initialValue)
 
   const recordAndLog = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value !== '') {
-      console.log(`New value in cents: ${toCents(e.target.valueAsNumber)}`)
-    }
-    setInputValue(e.target.value)
+    const amount = removeCurrencySymbol(e.target.value)
+    logInCents(amount)
+    setCurrentValue(recordAsCurrency(amount, currentValue))
   }
 
   useEffect(() => {
-    setInputValue(formatToDecimal(props.value))
-  }, [props.value])
+    if (value) setCurrentValue(formatToDecimalCurrency(value))
+  }, [value])
 
   return (
     <input
       {...inputProps}
-      type="number"
-      value={inputValue}
+      type="text"
+      value={currentValue}
       onChange={recordAndLog}
       onBlur={recordAndLog}
-      aria-labelledby={props.id}
+      aria-labelledby={id}
       aria-invalid={!!error}
-      aria-required={props.required}
-      aria-disabled={props.disabled}
-      aria-placeholder={props.placeholder}
+      aria-required={required}
+      aria-disabled={disabled}
+      aria-placeholder={placeholder}
       className={`
         ${_styles.inputBase}
         ${_styles.arrowsDisabled}
-        ${props.disabled && _styles.inputDisabled}
+        ${disabled && _styles.inputDisabled}
         ${error && _styles.inputError}
       `}
     />

@@ -24,7 +24,7 @@ export default {
 export const Default = {
   args: {
     label: 'Total in Euro',
-    value: '',
+    value: 1250,
     error: '',
     disabled: false,
   },
