@@ -42,7 +42,6 @@ export default function CustomField(props: CustomFieldProps) {
       aria-placeholder={placeholder}
       className={`
         ${_styles.inputBase}
-        ${_styles.arrowsDisabled}
         ${disabled && _styles.inputDisabled}
         ${error && _styles.inputError}
       `}
