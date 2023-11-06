@@ -41,23 +41,25 @@ export const formatToDecimalCurrency = (value: string | number | undefined, loca
 }
 
 export const logInCents = (value: string, locale: string) => {
-  const amount = localeToNumber(value, locale)
+  const withoutCurrency = removeCurrencySymbol(value)
+  const amount = localeToNumber(withoutCurrency, locale)
   if (!isNaN(amount)) {
     console.log(`New value in cents: ${toCents(amount)}`)
   }
 }
 
 export const recordAsCurrency = (newValue: string, locale: string) => {
-  const amount = localeToNumber(newValue, locale)
+  const withoutCurrency = removeCurrencySymbol(newValue)
+  const amount = localeToNumber(withoutCurrency, locale)
 
   if (
-    newValue.charAt(newValue.length - 1) === ',' ||
-    newValue.charAt(newValue.length - 1) === '.' ||
-    newValue.charAt(newValue.length - 1) === '-'
+    withoutCurrency.charAt(withoutCurrency.length - 1) === ',' ||
+    withoutCurrency.charAt(withoutCurrency.length - 1) === '.' ||
+    withoutCurrency.charAt(withoutCurrency.length - 1) === '-'
   ) {
-    return addCurrencySymbol(newValue)
+    return addCurrencySymbol(withoutCurrency)
   }
-  if (newValue === '' || isNaN(amount)) return ''
+  if (withoutCurrency === '' || isNaN(amount)) return ''
 
   return addCurrencySymbol(numberToLocale(amount, locale))
 }

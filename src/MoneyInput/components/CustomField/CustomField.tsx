@@ -1,12 +1,6 @@
 import { useEffect, useState } from 'react'
 import _styles from './CustomField.module.css'
-import {
-  formatToDecimalCurrency,
-  removeCurrencySymbol,
-  logInCents,
-  recordAsCurrency,
-  validateLocale,
-} from '../../utils/numbers'
+import { formatToDecimalCurrency, logInCents, recordAsCurrency, validateLocale } from '../../utils/numbers'
 import { CustomFieldProps } from '../../types'
 
 export default function CustomField(props: CustomFieldProps) {
@@ -19,9 +13,8 @@ export default function CustomField(props: CustomFieldProps) {
   const [currentValue, setCurrentValue] = useState(initialValue)
 
   const recordAndLog = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const amount = removeCurrencySymbol(e.target.value)
-    logInCents(amount, safeLocale)
-    setCurrentValue(recordAsCurrency(amount, safeLocale))
+    logInCents(e.target.value, safeLocale)
+    setCurrentValue(recordAsCurrency(e.target.value, safeLocale))
   }
 
   useEffect(() => {
